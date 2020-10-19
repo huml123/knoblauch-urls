@@ -1,0 +1,19 @@
+name: Generate & Deploy
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Generate & Deploy
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate
+      uses: brunoluiz/urlzap-github-action@v1
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: .
